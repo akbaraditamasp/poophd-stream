@@ -23,7 +23,7 @@ export async function getVideo(link: string) {
         ?.find((el) => el.match(/(.jpg|.jpeg|.png)\"/i))
         ?.match(/\"https:\/\/files\.video-src\.com\/(.*)\"/);
       const videoID = urls
-        ?.find((el) => el.match(/\.mp4\"/i))
+        ?.pop()
         ?.match(/\"https:\/\/files\.video-src\.com\/(.*)\"/);
 
       if (!thumbnailId || !videoID) {

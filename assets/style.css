@@ -356,6 +356,9 @@
   .pt-\[56\%\] {
     padding-top: 56%;
   }
+  .text-center {
+    text-align: center;
+  }
   .font-montserrat {
     font-family: var(--font-montserrat);
   }
@@ -379,6 +382,9 @@
   }
   .text-gray-700 {
     color: var(--color-gray-700);
+  }
+  .text-red-500 {
+    color: var(--color-red-500);
   }
   .text-white {
     color: var(--color-white);

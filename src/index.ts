@@ -1,11 +1,10 @@
 import { serve } from "@hono/node-server";
+import { serveStatic } from "@hono/node-server/serve-static";
 import axios from "axios";
 import { Hono } from "hono";
 import { stream } from "hono/streaming";
 import { Readable } from "node:stream";
 import router from "./router";
-import { getVideo } from "./utils/video";
-import { serveStatic } from "@hono/node-server/serve-static";
 
 const app = new Hono()
   .use("/assets/*", serveStatic({ root: "./" }))
@@ -60,7 +59,8 @@ const app = new Hono()
     });
   })
   .route("/", router)
-  .onError(async (_error, c) => {
+  .onError(async (error, c) => {
+    console.error(error);
     return c.json({ message: "Unexpected internal server error" }, 500);
   });
 

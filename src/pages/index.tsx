@@ -4,9 +4,11 @@ import type { getVideo } from "../utils/video";
 export default function App({
   detail,
   url,
+  isError,
 }: {
   detail?: Partial<Awaited<ReturnType<typeof getVideo>>>;
   url?: string;
+  isError?: boolean;
 }) {
   return (
     <div class="w-full min-h-screen bg-neutral-100 flex flex-col justify-center items-center p-5">
@@ -33,6 +35,11 @@ export default function App({
             TONTON
           </button>
         </form>
+        {isError && (
+          <div class="mt-5 pt-5 border-t border-gray-200 text-red-500 text-center">
+            Video gagal dimuat
+          </div>
+        )}
         {detail?.videoID && (
           <div class="mt-5 pt-5 border-t border-gray-200">
             <div class="relative w-full pt-[56%] bg-black rounded overflow-hidden">
