@@ -3,7 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "dev": "bun --hot ./src/index.ts",
     "build": "bun run css && bun build ./src/index.ts --target node --outdir ./ --format esm --minify",
     "css": "bunx @tailwindcss/cli -i ./src/assets/style.css -o ./assets/style.css"
