@@ -1,0 +1,26 @@
+{
+  "name": "poop-free",
+  "module": "index.ts",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun --hot ./src/index.ts",
+    "build": "bun run css && bun build ./src/index.ts --target node --outdir ./ --format esm --minify",
+    "css": "bunx @tailwindcss/cli -i ./src/assets/style.css -o ./assets/style.css"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.4",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@tailwindcss/cli": "^4.1.10",
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
+    "hono": "^4.7.11",
+    "tailwindcss": "^4.1.10"
+  }
+}
