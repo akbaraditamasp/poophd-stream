@@ -73,7 +73,7 @@ export default function App({
                     video.innerHTML = \`<video style="width: 100%; height: 100%;" controls>
                         <source src="/stream?id=${encodeURIComponent(
                           detail.videoID
-                        )}&host=${detail.host}" type="video/mp4">
+                        )}&host=https://poophd.video-src.com/" type="video/mp4">
                         Browser Anda tidak mendukung video tag.
                     </video>\`
                     video.classList.remove("hidden")
