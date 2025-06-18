@@ -49,40 +49,40 @@ export default function App({
               />
               <div class="flex justify-center items-center absolute top-0 left-0 w-full h-full bg-black/60">
                 <button
-                  id="play"
                   type="button"
+                  data-video={encodeURIComponent(vid.videoID || "")}
                   class="bg-white py-2 px-3 text-xs rounded-full opacity-70 hover:opacity-100"
+                  onclick="play(this)"
                 >
                   PUTAR
                 </button>
               </div>
-              <div
-                id="video"
-                class="w-full h-full absolute top-0 left-0 bg-black hidden"
-              ></div>
+              <div class="video w-full h-full absolute top-0 left-0 bg-black hidden"></div>
             </div>
             <div class="p-2">
               <h2 class="font-bold">{vid.title}</h2>
               <p class="text-sm">Durasi: {vid.duration || "0:0"}</p>
             </div>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `document.getElementById("play").addEventListener('click', function() {
-                    var video = document.getElementById("video");
-                    
-                    video.innerHTML = \`<video style="width: 100%; height: 100%;" controls>
-                        <source src="/stream?id=${encodeURIComponent(
-                          vid?.videoID || ""
-                        )}&host=https://poophd.video-src.com/" type="video/mp4">
-                        Browser Anda tidak mendukung video tag.
-                    </video>\`
-                    video.classList.remove("hidden")
-                })`,
-              }}
-            ></script>
           </div>
         ))}
       </div>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            function play(btn) {
+                const wrapper = btn.closest('.relative');
+                const videoContainer = wrapper.querySelector('.video');
+                const videoId = btn.getAttribute('data-video');
+
+                videoContainer.innerHTML = \`<video style="width: 100%; height: 100%;" controls>
+                        <source src="/stream?id=\${videoId}&host=https://poophd.video-src.com/" type="video/mp4">
+                        Browser Anda tidak mendukung video tag.
+                    </video>\`;
+                videoContainer.classList.remove("hidden");
+            }
+        `,
+        }}
+      ></script>
     </div>
   );
 }
