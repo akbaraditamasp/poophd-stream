@@ -54,6 +54,6 @@ export async function getVideo(link: string) {
     duration,
     imageURL,
     videoID,
-    host: `https://${url.hostname}`,
+    host: `https://poophd.video-src.com/`,
   };
 }
