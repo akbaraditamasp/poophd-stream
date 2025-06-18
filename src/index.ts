@@ -65,5 +65,5 @@ const app = new Hono()
   });
 
 serve({ fetch: app.fetch, port: Number(process.env.PORT) || 3000 }, () => {
-  console.log("App running");
+  console.log(`App running on PORT ${Number(process.env.PORT) || 3000}`);
 });
