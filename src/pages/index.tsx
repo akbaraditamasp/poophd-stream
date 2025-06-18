@@ -6,7 +6,7 @@ export default function App({
   url,
   isError,
 }: {
-  detail?: Partial<Awaited<ReturnType<typeof getVideo>>>;
+  detail?: Partial<Awaited<ReturnType<typeof getVideo>>>[];
   url?: string;
   isError?: boolean;
 }) {
@@ -40,11 +40,11 @@ export default function App({
             Video gagal dimuat
           </div>
         )}
-        {detail?.videoID && (
+        {detail?.map((vid) => (
           <div class="mt-5 pt-5 border-t border-gray-200">
             <div class="relative w-full pt-[56%] bg-black rounded overflow-hidden">
               <img
-                src={detail.imageURL}
+                src={vid.imageURL}
                 class="w-full h-full absolute top-0 left-0 object-contain"
               />
               <div class="flex justify-center items-center absolute top-0 left-0 w-full h-full bg-black/60">
@@ -62,8 +62,8 @@ export default function App({
               ></div>
             </div>
             <div class="p-2">
-              <h2 class="font-bold">{detail.title}</h2>
-              <p class="text-sm">Durasi: {detail.duration || "0:0"}</p>
+              <h2 class="font-bold">{vid.title}</h2>
+              <p class="text-sm">Durasi: {vid.duration || "0:0"}</p>
             </div>
             <script
               dangerouslySetInnerHTML={{
@@ -72,7 +72,7 @@ export default function App({
                     
                     video.innerHTML = \`<video style="width: 100%; height: 100%;" controls>
                         <source src="/stream?id=${encodeURIComponent(
-                          detail.videoID
+                          vid?.videoID || ""
                         )}&host=https://poophd.video-src.com/" type="video/mp4">
                         Browser Anda tidak mendukung video tag.
                     </video>\`
@@ -81,7 +81,7 @@ export default function App({
               }}
             ></script>
           </div>
-        )}
+        ))}
       </div>
     </div>
   );

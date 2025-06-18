@@ -57,3 +57,29 @@ export async function getVideo(link: string) {
     host: `https://poophd.video-src.com/`,
   };
 }
+
+export async function getFolder(link: string) {
+  const url = new URL(link);
+
+  const links = await axios
+    .get(link, {
+      headers: {
+        Referer: `https://${url.hostname}`,
+      },
+    })
+    .then(({ data }) => {
+      const $ = load(data);
+
+      const videos = $(".video-wrapper");
+
+      const result: string[] = [];
+      for (const video of videos) {
+        result.push(`https://${url.hostname}${$(video).attr("href")}`);
+      }
+
+      return result;
+    })
+    .catch(() => [] as string[]);
+
+  return Promise.all(links.map((item) => getVideo(item)));
+}

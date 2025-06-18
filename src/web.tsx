@@ -15,8 +15,6 @@ const web = jsxRenderer(({ children }) => {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="/assets/style.css" />
-
-        <script src="//unpkg.com/alpinejs" defer></script>
       </head>
       <body class="font-open-sans text-gray-700">{children}</body>
     </html>
