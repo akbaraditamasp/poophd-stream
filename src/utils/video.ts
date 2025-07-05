@@ -26,14 +26,16 @@ export async function getVideo(link: string) {
         ?.pop()
         ?.match(/\"https:\/\/files\.video-src\.com\/(.*)\"/);
 
-      if (!thumbnailId || !videoID) {
+      if (!videoID) {
         throw new Error("Not Found");
       }
 
       return {
-        imageURL: `https://files.video-src.com/${encodeURIComponent(
-          thumbnailId![1]!
-        )}`,
+        imageURL: thumbnailId
+          ? `https://files.video-src.com/${encodeURIComponent(
+              thumbnailId![1]!
+            )}`
+          : "",
         videoID: videoID![1]!,
       };
     });
